@@ -104,36 +104,17 @@ public class FPController : MonoBehaviour
 
     private void Shoot()
     {
-        /*if (bulletPrefab != null && gunPoint != null && !isGamePaused)
-        {
-            GameObject bullet = Instantiate(bulletPrefab, gunPoint.position, gunPoint.rotation);
-            Rigidbody rb = bullet.GetComponent<Rigidbody>();
-
-            if (rb != null)
-            {
-                rb.AddForce(gunPoint.forward * 1000f); //Adjust force value as needed
-                Destroy(bullet, 3); //delete bullet after 3 seconds
-            }
-        }*/
-
-       if (bulletPrefab != null && gunPoint != null && !isGamePaused)
-{
-    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-    // Spawn a little in front of the player
-    Vector3 spawnPosition = gunPoint.position + ray.direction * 0.5f; 
-    GameObject bullet = Instantiate(bulletPrefab, spawnPosition, Quaternion.identity);
-    Rigidbody rb = bullet.GetComponent<Rigidbody>();
-
-    if (rb != null)
+        if (bulletPrefab != null && gunPoint != null && !isGamePaused)
     {
-        rb.AddForce(ray.direction * 200f);
-        Destroy(bullet, 3);
+        GameObject bullet = Instantiate(bulletPrefab, gunPoint.position, gunPoint.rotation);
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+
+        if (rb != null)
+        {
+            rb.linearVelocity = gunPoint.forward * 50f;
+            Destroy(bullet, 3f);
+        }
     }
-}
-
-
-
 
     }
 
