@@ -38,7 +38,7 @@ public class EnemyBulletCheck : MonoBehaviour
 
            Debug.Log("I hate this");
 
-           healthSlider.value -= 5;
+           healthSlider.value --;
         }
             
     }

@@ -4,16 +4,22 @@ using System.Collections;
 public class EnemyShoot_Towards : MonoBehaviour
 {
     public GameObject enemyBulletPrefab;
-   public Transform enemyGunPoint;
-   public GameObject player;
-   int damageCount = 0;
+    public Transform enemyGunPoint;
+    public GameObject player;
 
-   bool hasBulletFired;
+    public Renderer rend;
+    public Material redMaterial;
+    public Material defaultMaterial;
+    int damageCount = 0;
+
+    bool hasBulletFired;
 
     void Start()
     {
         //hasBulletFired = false;
         ShootGun();
+        //Renderer rend = GetComponent<Renderer>();
+        rend.material = defaultMaterial;
        
     }
 
@@ -22,9 +28,7 @@ public class EnemyShoot_Towards : MonoBehaviour
        if(!hasBulletFired){
         ShootGun();
        }
-
         MoveEnemy();
-
     }
 
 
@@ -76,6 +80,14 @@ public class EnemyShoot_Towards : MonoBehaviour
         hasBulletFired = false;
     }
 
+    IEnumerator DamageIndicator()
+    {
+        rend.material = redMaterial;
+        yield return new WaitForSeconds(0.1f);
+        rend.material = defaultMaterial;
+
+    }
+
 
     void MoveEnemy()
     {
@@ -93,11 +105,13 @@ public class EnemyShoot_Towards : MonoBehaviour
         if(collision.gameObject.tag == "PlayerBullet")
         {
             damageCount++;
+            StartCoroutine(DamageIndicator());
 
             if(damageCount == 3)
             {
                 Destroy(gameObject);
                 damageCount = 0;
+                StartCoroutine(DamageIndicator());
             }
         }
     }
