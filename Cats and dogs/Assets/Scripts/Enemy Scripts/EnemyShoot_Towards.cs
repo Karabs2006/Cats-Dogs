@@ -6,18 +6,20 @@ public class EnemyShoot_Towards : MonoBehaviour
     public GameObject enemyBulletPrefab;
     public Transform enemyGunPoint;
     public GameObject player;
+    public EnemyBulletCheck enemyBulletCheck;
 
     public Renderer rend;
     public Material redMaterial;
     public Material defaultMaterial;
     int damageCount = 0;
+    bool hitPlayer;
 
     bool hasBulletFired;
 
     void Start()
     {
         //hasBulletFired = false;
-        ShootGun();
+        //ShootGun();
         //Renderer rend = GetComponent<Renderer>();
         rend.material = defaultMaterial;
        
@@ -25,9 +27,10 @@ public class EnemyShoot_Towards : MonoBehaviour
 
     void Update()
     {   
-       if(!hasBulletFired){
+       /*if(!hasBulletFired){
         ShootGun();
        }
+       */
         MoveEnemy();
     }
 
@@ -64,7 +67,7 @@ public class EnemyShoot_Towards : MonoBehaviour
                 Vector3 direction = (player.transform.position - enemyGunPoint.position).normalized;
                 rb.linearVelocity = direction * 30f;
 
-                Destroy(bullet, 1.5f);
+                Destroy(bullet, 1f);
             }
 
             hasBulletFired = true;
@@ -76,7 +79,7 @@ public class EnemyShoot_Towards : MonoBehaviour
 
     IEnumerator CoolDown()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.4f);
         hasBulletFired = false;
     }
 
@@ -88,13 +91,19 @@ public class EnemyShoot_Towards : MonoBehaviour
 
     }
 
+    IEnumerator AttackCooldown()
+    {
+        yield return new WaitForSeconds(1f);
+        hitPlayer = false;
+    }
+
 
     void MoveEnemy()
     {
         transform.position = Vector3.MoveTowards(
         transform.position,
         player.transform.position,
-        2.5f * Time.deltaTime
+        3.5f * Time.deltaTime
     );
     }
 
@@ -114,5 +123,14 @@ public class EnemyShoot_Towards : MonoBehaviour
                 StartCoroutine(DamageIndicator());
             }
         }
+
+
+        if(collision.gameObject.tag == "Player" && !hitPlayer)
+        {
+            enemyBulletCheck.healthSlider.value--;
+            StartCoroutine(AttackCooldown());
+
+        }
+
     }
 }
