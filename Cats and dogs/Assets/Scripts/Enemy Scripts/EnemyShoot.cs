@@ -7,6 +7,7 @@ public class EnemyShoot : MonoBehaviour
    
    public GameObject enemyBulletPrefab;
    public Transform enemyGunPoint;
+   int damageCount = 0;
 
    bool hasBulletFired;
 
@@ -52,6 +53,25 @@ public class EnemyShoot : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         hasBulletFired = false;
+    }
+
+
+
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "PlayerBullet")
+        {
+            damageCount++;
+            //StartCoroutine(DamageIndicator());
+
+            if(damageCount == 3)
+            {
+                Destroy(gameObject);
+                damageCount = 0;
+                //StartCoroutine(DamageIndicator());
+            }
+        }
     }
     
 }

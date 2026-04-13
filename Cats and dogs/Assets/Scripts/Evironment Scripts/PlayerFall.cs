@@ -21,10 +21,11 @@ public class PlayerFall : MonoBehaviour
 
     void Update()
     {
-        if(fPController.ammo == 0 && !loadNextLevel.reachedEndPlatform)
+        /*if(fPController.ammo == 0 && !loadNextLevel.reachedEndPlatform)
         {
             GameLoss();
         }
+        */
         if(wasRestartPressed)
         {
             StartCoroutine(RestartGameOnce());
