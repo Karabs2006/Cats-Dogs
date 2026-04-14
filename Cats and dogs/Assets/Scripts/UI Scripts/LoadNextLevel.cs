@@ -56,6 +56,9 @@ public class LoadNextLevel : MonoBehaviour
             playerTimeLeft.text = $"{timer.timeScript}";
             orbsLeft.text =$"{fPController.ammo}";
             counters.SetActive(false);
+            fPController.lookSensitivity = 0f;
+            fPController.isGameRunning = false;
+
         }
 
     }
