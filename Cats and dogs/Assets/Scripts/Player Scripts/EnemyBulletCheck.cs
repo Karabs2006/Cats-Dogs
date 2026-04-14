@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,10 +7,17 @@ public class EnemyBulletCheck : MonoBehaviour
     public Slider healthSlider;
     public PlayerFall playerFall;
     public int maxHealth = 20;
+    public int eliminations = 0;
+    public TMP_Text elimText;
+
+    public AudioSource audioSource;
+    public AudioClip hurt;
 
     void Start()
     {
         healthSlider.value = maxHealth;
+        elimText.text = $"{elimText}";
+
     }
 
     void Update()

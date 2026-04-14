@@ -93,18 +93,23 @@ public class EnemyShoot_Towards : MonoBehaviour
 
     IEnumerator AttackCooldown()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         hitPlayer = false;
     }
 
 
     void MoveEnemy()
     {
+        float distance = Vector3.Distance(transform.position, player.transform.position);
+
+    if (distance < 15f) 
+    {
         transform.position = Vector3.MoveTowards(
         transform.position,
         player.transform.position,
         3.5f * Time.deltaTime
-    );
+        );
+    }
     }
 
 
@@ -121,6 +126,11 @@ public class EnemyShoot_Towards : MonoBehaviour
                 Destroy(gameObject);
                 damageCount = 0;
                 StartCoroutine(DamageIndicator());
+
+                enemyBulletCheck.eliminations++;
+                enemyBulletCheck.elimText.text = $"{enemyBulletCheck.eliminations}";
+
+                enemyBulletCheck.audioSource.PlayOneShot(enemyBulletCheck.hurt);
             }
         }
 
