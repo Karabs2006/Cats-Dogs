@@ -8,6 +8,9 @@ TagManager:
   - Left
   - Right
   - PlayerBullet
+  - TagCounter
+  - DogTag
+  - ScriptHolder
   layers:
   - Default
   - TransparentFX

@@ -44,8 +44,6 @@ public class EnemyBulletCheck : MonoBehaviour
             //ameObject bullet = GameObject.FindWithTag("EnemyBullet");
             //Destroy(bullet);
 
-           Debug.Log("I hate this");
-
            healthSlider.value --;
         }
             

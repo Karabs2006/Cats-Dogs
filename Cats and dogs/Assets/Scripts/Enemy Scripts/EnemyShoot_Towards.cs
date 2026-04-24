@@ -6,6 +6,7 @@ public class EnemyShoot_Towards : MonoBehaviour
     public GameObject enemyBulletPrefab;
     public Transform enemyGunPoint;
     public GameObject player;
+    public GameObject tagPrefab;
     public EnemyBulletCheck enemyBulletCheck;
 
     public Renderer rend;
@@ -22,6 +23,7 @@ public class EnemyShoot_Towards : MonoBehaviour
         //ShootGun();
         //Renderer rend = GetComponent<Renderer>();
         rend.material = defaultMaterial;
+        //tagPrefab = GameObject.FindWithTag("DogTag");
        
     }
 
@@ -123,6 +125,9 @@ public class EnemyShoot_Towards : MonoBehaviour
 
             if(damageCount == 3)
             {
+
+                Instantiate(tagPrefab, transform.position, tagPrefab.transform.rotation);
+
                 Destroy(gameObject);
                 damageCount = 0;
                 StartCoroutine(DamageIndicator());
@@ -131,6 +136,8 @@ public class EnemyShoot_Towards : MonoBehaviour
                 enemyBulletCheck.elimText.text = $"{enemyBulletCheck.eliminations}";
 
                 enemyBulletCheck.audioSource.PlayOneShot(enemyBulletCheck.hurt);
+
+              
             }
         }
 
