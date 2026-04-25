@@ -5,6 +5,10 @@ using UnityEngine.UI;
 public class EnemyBulletCheck : MonoBehaviour
 {
     public Slider healthSlider;
+    public Slider upgradedHealthSlider;
+    public Slider currentSlider;
+
+    public Upgrades upgrades;
     public PlayerFall playerFall;
     public int maxHealth = 20;
     public int eliminations = 0;
@@ -15,17 +19,22 @@ public class EnemyBulletCheck : MonoBehaviour
 
     void Start()
     {
-        healthSlider.value = maxHealth;
+        //healthSlider.value = maxHealth;
+        
         elimText.text = $"{elimText}";
+        currentSlider = healthSlider;
+        currentSlider.value = maxHealth;
+        upgradedHealthSlider.gameObject.SetActive(false);
 
     }
 
     void Update()
     {
-        if(healthSlider.value == 0)
+        if(currentSlider.value == 0)
         {
             playerFall.GameLoss();
         }
+
     }
     void OnCollisionEnter(Collision trigger)
     {
@@ -44,7 +53,7 @@ public class EnemyBulletCheck : MonoBehaviour
             //ameObject bullet = GameObject.FindWithTag("EnemyBullet");
             //Destroy(bullet);
 
-           healthSlider.value --;
+           currentSlider.value --;
         }
             
     }

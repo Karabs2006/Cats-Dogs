@@ -11,6 +11,7 @@ public class PlayerFall : MonoBehaviour
     public FPController fPController;
     bool wasRestartPressed;
     public LoadNextLevel loadNextLevel;
+
    
     public string levelToRestart;
     
@@ -29,6 +30,7 @@ public class PlayerFall : MonoBehaviour
         if(wasRestartPressed)
         {
             StartCoroutine(RestartGameOnce());
+          
         }
         else if(!wasRestartPressed)
         {

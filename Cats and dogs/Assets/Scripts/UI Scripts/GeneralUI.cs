@@ -81,6 +81,7 @@ public class GeneralUI : MonoBehaviour
         SceneManager.LoadSceneAsync(levelToRestart);
         wasRestartPressed = true;
         ResumeGame();
+        
     }
 
      public void LoadHardcore()

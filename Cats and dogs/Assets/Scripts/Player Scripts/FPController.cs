@@ -6,6 +6,7 @@ public class FPController : MonoBehaviour
 {   
     public AudioSource audioSource;
     public AudioClip audioClip;
+    
 
     [Header("Movement Settings")]
     public float moveSpeed = 5f;
@@ -29,7 +30,7 @@ public class FPController : MonoBehaviour
     private CharacterController controller;
     private Vector2 moveInput;
     private Vector2 lookInput;
-    private Vector3 velocity;
+    public Vector3 velocity;
     private float verticalRotation = 0f;
 
     public TMP_Text ammoText;
@@ -37,6 +38,9 @@ public class FPController : MonoBehaviour
     public bool isGameRunning = true;
     public bool isTimeSlowed;
     public bool isGamePaused;
+    public bool hasJumped;
+
+    public bool interactPressed;
 
     void Start()
     {
@@ -68,7 +72,9 @@ public class FPController : MonoBehaviour
         if (context.performed && controller.isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            hasJumped = true;
         }
+
     }
     public void HandleMovement()
     {
@@ -149,5 +155,18 @@ public class FPController : MonoBehaviour
             isGamePaused = true;
         }
     }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            interactPressed = true;
+        }
+    }
+
+
+
+    
     
 }
+    

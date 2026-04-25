@@ -9,7 +9,7 @@ public class MedKit : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            enemyBulletCheck.healthSlider.value = enemyBulletCheck.maxHealth;
+            enemyBulletCheck.currentSlider.value = enemyBulletCheck.maxHealth;
             Destroy(gameObject);
         }
     }

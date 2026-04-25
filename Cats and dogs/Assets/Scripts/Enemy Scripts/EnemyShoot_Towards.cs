@@ -144,7 +144,7 @@ public class EnemyShoot_Towards : MonoBehaviour
 
         if(collision.gameObject.tag == "Player" && !hitPlayer)
         {
-            enemyBulletCheck.healthSlider.value--;
+            enemyBulletCheck.currentSlider.value--;
             StartCoroutine(AttackCooldown());
 
         }

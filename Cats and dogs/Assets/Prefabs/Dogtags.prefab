@@ -96,7 +96,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1169628105879874727}
   - component: {fileID: 3984536410669118860}
-  - component: {fileID: 4436300267033165230}
   - component: {fileID: 5329376055792688734}
   m_Layer: 0
   m_Name: Dogtags
@@ -146,19 +145,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4436300267033165230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1977232227271456285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aa52ce08506de44b9d65b4cf9a48547, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tagCount: {fileID: 0}
 --- !u!65 &5329376055792688734
 BoxCollider:
   m_ObjectHideFlags: 0
