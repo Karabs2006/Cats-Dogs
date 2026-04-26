@@ -42,6 +42,12 @@ public class FPController : MonoBehaviour
 
     public bool interactPressed;
 
+    public bool hasDashed;
+
+    public InteractCheck interactCheck;
+    
+    public int jumpCount;
+
     void Start()
     {
         ammoText.text = $"{ammo}";
@@ -69,10 +75,29 @@ public class FPController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        /*
         if (context.performed && controller.isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             hasJumped = true;
+            doubleJump.jumpCount++;
+        }
+        */
+
+
+        if (!context.performed) return;
+
+        if (controller.isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            jumpCount = 1;
+            return;
+        }
+
+        if (jumpCount == 1 && interactCheck.isDoubleJumpEnabled)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            jumpCount = 2;
         }
 
     }
@@ -99,7 +124,7 @@ public class FPController : MonoBehaviour
 
     public void OnShoot(InputAction.CallbackContext context)
     {
-        if (isGameRunning && context.performed && ammo > 0 && !isGamePaused)
+        if (isGameRunning && context.performed && ammo > 0 && !isGamePaused && !interactCheck.inCollider)
         {
             Shoot();
             ammo--;
@@ -164,7 +189,13 @@ public class FPController : MonoBehaviour
         }
     }
 
-
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            hasDashed = true;
+        }
+    }
 
     
     

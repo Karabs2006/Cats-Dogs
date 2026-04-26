@@ -366,7 +366,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fPController: {fileID: 1124174509}
-  player: {fileID: 0}
+  characterController: {fileID: 0}
+  interactCheck: {fileID: 0}
+  jumpCount: 0
 --- !u!114 &37722465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2197,7 +2199,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 304759644}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 537685517}
+        m_TargetAssemblyTypeName: InteractCheck, Assembly-CSharp
+        m_MethodName: EnableDash
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &304759644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4012,6 +4026,11 @@ MonoBehaviour:
   upgradesMenu: {fileID: 2011976602}
   enemyTags: {fileID: 1124174520}
   healthBtn: {fileID: 1740090884}
+  dashBtn: {fileID: 304759641}
+  doubleJumpBtn: {fileID: 1092713503}
+  isDashEnabled: 0
+  inCollider: 0
+  isDoubleJumpEnabled: 0
 --- !u!1 &551352401
 GameObject:
   m_ObjectHideFlags: 0
@@ -8077,7 +8096,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1092713506}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 537685517}
+        m_TargetAssemblyTypeName: InteractCheck, Assembly-CSharp
+        m_MethodName: EnableDoubleJump
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1092713506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8274,6 +8305,7 @@ GameObject:
   - component: {fileID: 1124174517}
   - component: {fileID: 1124174519}
   - component: {fileID: 1124174520}
+  - component: {fileID: 1124174521}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -8314,6 +8346,9 @@ MonoBehaviour:
   isGamePaused: 0
   hasJumped: 0
   interactPressed: 0
+  hasDashed: 0
+  interactCheck: {fileID: 537685517}
+  jumpCount: 0
 --- !u!114 &1124174510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8451,6 +8486,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 28d92cc3-c530-4a93-9b0b-ba9cbd75930c
     m_ActionName: 'Player/Interact[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1124174509}
+        m_TargetAssemblyTypeName: FPController, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 454cd60b-dad4-46f0-8183-16afbb9a0520
+    m_ActionName: 'Player/Dash[/Keyboard/leftShift]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player
@@ -8681,8 +8732,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagCount: {fileID: 38769705}
+  publicTagInt: 0
   totalTags: 0
   enemyBulletCheck: {fileID: 1124174519}
+--- !u!114 &1124174521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124174508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd0379019ab420c4cacf51fefcd36111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterController: {fileID: 1124174516}
+  interactCheck: {fileID: 537685517}
+  fPController: {fileID: 1124174509}
+  dashSpeed: 20
+  dashTime: 0.25
 --- !u!1 &1125797527
 GameObject:
   m_ObjectHideFlags: 0
@@ -12300,7 +12369,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Tag Cost: 10'
+  m_text: 'Tag Cost: 15'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

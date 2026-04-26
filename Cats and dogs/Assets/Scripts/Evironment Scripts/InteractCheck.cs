@@ -7,8 +7,16 @@ public class InteractCheck : MonoBehaviour
     public EnemyTags enemyTags;
 
     public GameObject healthBtn;
+    public GameObject dashBtn;
 
-    bool inCollider = false;
+    public GameObject doubleJumpBtn;
+
+    public bool isDashEnabled = false;
+    public bool inCollider = false;
+
+    public bool isDoubleJumpEnabled = false;
+    bool isBackPressed;
+
     
     void Start()
     {
@@ -19,19 +27,26 @@ public class InteractCheck : MonoBehaviour
     void Update()
     {
          if(fPController.interactPressed && inCollider)
-            {
+            {   
+                isBackPressed = false;
                 upgradesMenu.SetActive(true);
                 Time.timeScale = 0f;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 fPController.lookSensitivity = 0f;
                 fPController.interactPressed = false;
-                inCollider = false;
+                inCollider = true;
             }
+
+        if (isBackPressed)
+        {
+            inCollider = false;
+        }
     }
 
     public void Back()
     {
+        isBackPressed = true;
         upgradesMenu.SetActive(false);
         fPController.isGamePaused = false;
         Time.timeScale = 1f;
@@ -41,10 +56,38 @@ public class InteractCheck : MonoBehaviour
         
     }
 
-    public void ExtraHealth()
+    public void RemainFalse()
     {
+        
+    }
+
+    public void ExtraHealth()
+    { 
+        if(enemyTags.publicTagInt >= 10)
+        {
         enemyTags.BuyHealth();
         Destroy(healthBtn);
+        }
+    }
+
+    public void EnableDash()
+    {   
+        if(enemyTags.publicTagInt >= 15)
+        {
+        isDashEnabled = true;
+        enemyTags.BuyDash();
+        Destroy(dashBtn);
+        }
+    }
+
+    public void EnableDoubleJump()
+    {
+        if(enemyTags.publicTagInt >= 15)
+        {
+            enemyTags.BuyDoubleJump();
+            isDoubleJumpEnabled = true;
+            Destroy(doubleJumpBtn);
+        }
     }
 
 
