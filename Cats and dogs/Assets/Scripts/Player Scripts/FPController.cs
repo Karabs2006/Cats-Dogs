@@ -19,6 +19,7 @@ public class FPController : MonoBehaviour
     public float verticalLookLimit = 90f;
 
     [Header("Shooting")]
+    public GameObject currentBulletPrefab;
     public GameObject bulletPrefab;
     public Transform gunPoint;
     [Header("Crouch Settings")]
@@ -48,9 +49,16 @@ public class FPController : MonoBehaviour
     
     public int jumpCount;
 
+    [Header("Weapon Switching")]
+    public bool firstKeyPressed;
+    public bool secondKeyPressed;
+    
+    public GameObject bulletPrefabTwo;
+
     void Start()
     {
         ammoText.text = $"{ammo}";
+        currentBulletPrefab = bulletPrefab;
     }
     private void Awake()
     {
@@ -135,9 +143,9 @@ public class FPController : MonoBehaviour
 
     private void Shoot()
     {
-        if (bulletPrefab != null && gunPoint != null && !isGamePaused)
+        if (currentBulletPrefab != null && gunPoint != null && !isGamePaused)
     {
-        GameObject bullet = Instantiate(bulletPrefab, gunPoint.position, gunPoint.rotation);
+        GameObject bullet = Instantiate(currentBulletPrefab, gunPoint.position, gunPoint.rotation);
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
 
         if (rb != null)
@@ -197,6 +205,21 @@ public class FPController : MonoBehaviour
         }
     }
 
+    public void OnFirstKeyPress(InputAction.CallbackContext context)
+    {
+       if (context.performed)
+        {
+            firstKeyPressed = true;
+        } 
+    }
+
+    public void OnSecondKeyPress(InputAction.CallbackContext context)
+    {
+       if (context.performed)
+        {
+            secondKeyPressed = true;
+        } 
+    }
     
     
 }

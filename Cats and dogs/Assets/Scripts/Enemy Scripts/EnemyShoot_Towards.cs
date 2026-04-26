@@ -125,7 +125,6 @@ public class EnemyShoot_Towards : MonoBehaviour
 
             if(damageCount == 3)
             {
-
                 Instantiate(tagPrefab, transform.position, tagPrefab.transform.rotation);
 
                 Destroy(gameObject);
@@ -139,6 +138,23 @@ public class EnemyShoot_Towards : MonoBehaviour
 
               
             }
+        }
+
+        if(collision.gameObject.tag == "PlayerBulletTwo")
+        {
+            //damageCount++;
+            StartCoroutine(DamageIndicator());
+
+            Instantiate(tagPrefab, transform.position, tagPrefab.transform.rotation);
+
+            Destroy(gameObject);
+            damageCount = 0;
+            StartCoroutine(DamageIndicator());
+
+            enemyBulletCheck.eliminations++;
+            enemyBulletCheck.elimText.text = $"{enemyBulletCheck.eliminations}";
+
+            enemyBulletCheck.audioSource.PlayOneShot(enemyBulletCheck.hurt);
         }
 
 

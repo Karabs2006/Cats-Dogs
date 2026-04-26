@@ -12,6 +12,7 @@ TagManager:
   - DogTag
   - ScriptHolder
   - Upgrades
+  - PlayerBulletTwo
   layers:
   - Default
   - TransparentFX
