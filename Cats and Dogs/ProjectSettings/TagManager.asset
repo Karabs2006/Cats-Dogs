@@ -13,6 +13,8 @@ TagManager:
   - ScriptHolder
   - Upgrades
   - PlayerBulletTwo
+  - EnemyBoss
+  - BossGround
   layers:
   - Default
   - TransparentFX
