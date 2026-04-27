@@ -3583,6 +3583,7 @@ MonoBehaviour:
   fPController: {fileID: 1124174509}
   audioSource: {fileID: 696396089}
   reload: {fileID: 8300000, guid: ec8e4e072ecec9840aeda1703d2d0bc9, type: 3}
+  weaponSwitch: {fileID: 0}
 --- !u!4 &464976522 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 02702b5e722468b498440b09e28685d2, type: 3}
@@ -8691,8 +8692,11 @@ MonoBehaviour:
   standHeight: 2
   crouchSpeed: 2.5
   velocity: {x: 0, y: 0, z: 0}
+  weaponSwitch: {fileID: 1124174522}
   ammoText: {fileID: 324429580}
   ammo: 25
+  secondaryAmmo: 14
+  currentAmmo: 0
   isGameRunning: 1
   isTimeSlowed: 0
   isGamePaused: 0
@@ -10104,6 +10108,7 @@ MonoBehaviour:
   fPController: {fileID: 1124174509}
   audioSource: {fileID: 696396089}
   reload: {fileID: 8300000, guid: ec8e4e072ecec9840aeda1703d2d0bc9, type: 3}
+  weaponSwitch: {fileID: 0}
 --- !u!4 &1157880067 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 02702b5e722468b498440b09e28685d2, type: 3}
@@ -16605,6 +16610,7 @@ MonoBehaviour:
   fPController: {fileID: 1124174509}
   audioSource: {fileID: 696396089}
   reload: {fileID: 8300000, guid: ec8e4e072ecec9840aeda1703d2d0bc9, type: 3}
+  weaponSwitch: {fileID: 0}
 --- !u!4 &1786247829 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 02702b5e722468b498440b09e28685d2, type: 3}
@@ -17786,6 +17792,7 @@ MonoBehaviour:
   fPController: {fileID: 1124174509}
   audioSource: {fileID: 696396089}
   reload: {fileID: 8300000, guid: ec8e4e072ecec9840aeda1703d2d0bc9, type: 3}
+  weaponSwitch: {fileID: 0}
 --- !u!4 &1916230236 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 02702b5e722468b498440b09e28685d2, type: 3}

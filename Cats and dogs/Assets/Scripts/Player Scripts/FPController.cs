@@ -22,6 +22,7 @@ public class FPController : MonoBehaviour
     public GameObject currentBulletPrefab;
     public GameObject bulletPrefab;
     public Transform gunPoint;
+
     [Header("Crouch Settings")]
     public float crouchHeight = 1f;
     public float standHeight = 2f;
@@ -34,8 +35,17 @@ public class FPController : MonoBehaviour
     public Vector3 velocity;
     private float verticalRotation = 0f;
 
+
+    [Header("Ammo Types")]
+
+    public WeaponSwitch weaponSwitch;
     public TMP_Text ammoText;
     public int ammo = 22;
+    public int secondaryAmmo = 14;
+    public int currentAmmo;
+
+
+
     public bool isGameRunning = true;
     public bool isTimeSlowed;
     public bool isGamePaused;
@@ -59,6 +69,7 @@ public class FPController : MonoBehaviour
     {
         ammoText.text = $"{ammo}";
         currentBulletPrefab = bulletPrefab;
+        currentAmmo = ammo;
     }
     private void Awake()
     {
@@ -132,13 +143,23 @@ public class FPController : MonoBehaviour
 
     public void OnShoot(InputAction.CallbackContext context)
     {
-        if (isGameRunning && context.performed && ammo > 0 && !isGamePaused && !interactCheck.inCollider)
+        if (isGameRunning && context.performed && ammo > 0 && !isGamePaused && !interactCheck.inCollider && weaponSwitch.blasterOne.activeSelf)
         {
             Shoot();
             ammo--;
             ammoText.text = $"{ammo}";
             audioSource.PlayOneShot(audioClip);
         }
+
+        if (isGameRunning && context.performed && secondaryAmmo > 0 && !isGamePaused && !interactCheck.inCollider && weaponSwitch.blasterTwo.activeSelf)
+        {
+            Shoot();
+            secondaryAmmo--;
+            ammoText.text = $"{secondaryAmmo}";
+            audioSource.PlayOneShot(audioClip);
+        }
+
+        
     }
 
     private void Shoot()

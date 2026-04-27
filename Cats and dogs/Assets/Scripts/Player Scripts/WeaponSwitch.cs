@@ -29,7 +29,10 @@ public class WeaponSwitch : MonoBehaviour
             {
                 backgroundOne.SetActive(true);
                 blasterOne.SetActive(true);
+
                 fPController.currentBulletPrefab = fPController.bulletPrefab;
+                //fPController.currentAmmo = fPController.ammo;
+                fPController.ammoText.text = $"{fPController.ammo}";
 
                 backgroundTwo.SetActive(false);
                 blasterTwo.SetActive(false);
@@ -47,7 +50,10 @@ public class WeaponSwitch : MonoBehaviour
                 backgroundTwo.SetActive(true);
 
                 fPController.secondKeyPressed = false;
+
                 fPController.currentBulletPrefab = fPController.bulletPrefabTwo;
+                //fPController.currentAmmo = fPController.secondaryAmmo;
+                fPController.ammoText.text = $"{fPController.secondaryAmmo}";
             }
         }
         
