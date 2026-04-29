@@ -8,6 +8,7 @@ public class Timer : MonoBehaviour
     public PlayerFall playerFall;
     public TMP_Text timeText;
     public FPController fPController;
+    public GameObject upgradesMenu;
 
     public int timeInt;
     public int timeScript;
@@ -45,7 +46,7 @@ public class Timer : MonoBehaviour
         for (int i = timeInt; i >= 0; i--)
         {
             // Wait if paused
-            yield return new WaitWhile(() => fPController.isGamePaused);
+            yield return new WaitWhile(() => fPController.isGamePaused || upgradesMenu.activeSelf);
 
             timeText.text = $"{i}";
             timeScript = i;
@@ -59,7 +60,7 @@ public class Timer : MonoBehaviour
 
             while (elapsed < 1f)
             {
-                if (!fPController.isGamePaused)
+                if (!fPController.isGamePaused )
                 {
                     elapsed += Time.unscaledDeltaTime;
                 }

@@ -8,6 +8,8 @@ public class EnemyTags : MonoBehaviour
     public int publicTagInt;
     public int totalTags;
     public EnemyBulletCheck enemyBulletCheck;
+    public AudioSource audioSource;
+    public AudioClip pickupSound;
 
     void Start()
     {
@@ -66,6 +68,7 @@ public class EnemyTags : MonoBehaviour
             publicTagInt = tagInt;
             totalTags = tagInt;
             tagCount.text = $"{tagInt}";
+            audioSource.PlayOneShot(pickupSound);
             Destroy(other.gameObject);
         }
     }

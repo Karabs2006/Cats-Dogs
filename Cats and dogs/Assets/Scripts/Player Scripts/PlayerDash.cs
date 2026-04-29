@@ -10,6 +10,9 @@ public class PlayerDash : MonoBehaviour
     public float dashSpeed;
     public float dashTime;
 
+    public AudioSource audioSource;
+    public AudioClip dashSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,12 +32,13 @@ public class PlayerDash : MonoBehaviour
     IEnumerator Dash()
     {
         float startTime = Time.time;
+        audioSource.PlayOneShot(dashSound);
 
         while(Time.time < startTime + dashTime)
         {
             fPController.hasDashed = false;
             characterController.Move(transform.forward * dashSpeed * Time.deltaTime);
-
+            
             yield return null;
         }
     }

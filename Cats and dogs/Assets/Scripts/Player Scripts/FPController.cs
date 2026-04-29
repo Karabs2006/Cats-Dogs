@@ -5,7 +5,9 @@ using TMPro;
 public class FPController : MonoBehaviour
 {   
     public AudioSource audioSource;
-    public AudioClip audioClip;
+    public AudioClip audioClipOne;
+    public AudioClip audioClipTwo;
+   
     
 
     [Header("Movement Settings")]
@@ -70,6 +72,7 @@ public class FPController : MonoBehaviour
         ammoText.text = $"{ammo}";
         currentBulletPrefab = bulletPrefab;
         currentAmmo = ammo;
+
     }
     private void Awake()
     {
@@ -148,7 +151,7 @@ public class FPController : MonoBehaviour
             Shoot();
             ammo--;
             ammoText.text = $"{ammo}";
-            audioSource.PlayOneShot(audioClip);
+            audioSource.PlayOneShot(audioClipOne);
         }
 
         if (isGameRunning && context.performed && secondaryAmmo > 0 && !isGamePaused && !interactCheck.inCollider && weaponSwitch.blasterTwo.activeSelf)
@@ -156,7 +159,7 @@ public class FPController : MonoBehaviour
             Shoot();
             secondaryAmmo--;
             ammoText.text = $"{secondaryAmmo}";
-            audioSource.PlayOneShot(audioClip);
+            audioSource.PlayOneShot(audioClipTwo);
         }
 
         
@@ -231,6 +234,7 @@ public class FPController : MonoBehaviour
        if (context.performed)
         {
             firstKeyPressed = true;
+            
         } 
     }
 
@@ -239,6 +243,7 @@ public class FPController : MonoBehaviour
        if (context.performed)
         {
             secondKeyPressed = true;
+          
         } 
     }
     

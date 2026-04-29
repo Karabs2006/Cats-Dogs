@@ -5,6 +5,8 @@ public class BlasterPickup : MonoBehaviour
 {   
     public WeaponSwitch weaponSwitch;
     public bool blasterCollected = false;
+    public AudioSource audioSource;
+    public AudioClip audioClip;
 
     int angle = 90;
     void Start()
@@ -19,6 +21,7 @@ public class BlasterPickup : MonoBehaviour
             gameObject.SetActive(false);
             weaponSwitch.weaponUI.SetActive(true);
             blasterCollected = true;
+            audioSource.PlayOneShot(audioClip);
             }
     }
 

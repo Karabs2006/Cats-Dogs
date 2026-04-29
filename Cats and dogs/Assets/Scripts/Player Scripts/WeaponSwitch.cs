@@ -14,6 +14,9 @@ public class WeaponSwitch : MonoBehaviour
     public GameObject blasterOne;
     public GameObject blasterTwo;
 
+    public AudioSource audioSource;
+    public AudioClip switchAudio;
+
     void Start()
     {
         backgroundTwo.SetActive(false);
@@ -27,6 +30,7 @@ public class WeaponSwitch : MonoBehaviour
         {
             if(fPController.firstKeyPressed)
             {
+                audioSource.PlayOneShot(switchAudio);
                 backgroundOne.SetActive(true);
                 blasterOne.SetActive(true);
 
@@ -43,6 +47,7 @@ public class WeaponSwitch : MonoBehaviour
 
             if(fPController.secondKeyPressed)
             {
+                audioSource.PlayOneShot(switchAudio);
                 backgroundOne.SetActive(false);
                 blasterOne.SetActive(false);
                 
