@@ -1,37 +1,32 @@
 using UnityEngine;
 using System.Collections;
 
-public class EnemyShoot_Towards : MonoBehaviour
+public class AttackPlayer : MonoBehaviour
 {
-
+   
     public GameObject player;
     public GameObject tagPrefab;
     public EnemyBulletCheck enemyBulletCheck;
 
-    public Renderer rend;
-    public Material redMaterial;
-    public Material defaultMaterial;
+    //public Renderer rend;
+    //public Material redMaterial;
+    //public Material defaultMaterial;
     int damageCount = 0;
     bool hitPlayer;
 
     bool hasBulletFired;
 
+    public Animator animator;
+
     void Start()
     {
-        //hasBulletFired = false;
-        //ShootGun();
-        //Renderer rend = GetComponent<Renderer>();
-        rend.material = defaultMaterial;
-        //tagPrefab = GameObject.FindWithTag("DogTag");
-       
+        
+        //rend.material = defaultMaterial;
+        
     }
 
     void Update()
     {   
-       /*if(!hasBulletFired){
-        ShootGun();
-       }
-       */
         MoveEnemy();
     }
 
@@ -45,9 +40,9 @@ public class EnemyShoot_Towards : MonoBehaviour
 
     IEnumerator DamageIndicator()
     {
-        rend.material = redMaterial;
+        //rend.material = redMaterial;
         yield return new WaitForSeconds(0.1f);
-        rend.material = defaultMaterial;
+        //rend.material = defaultMaterial;
 
     }
 
@@ -69,6 +64,18 @@ public class EnemyShoot_Towards : MonoBehaviour
         player.transform.position,
         3.5f * Time.deltaTime
         );
+
+        Vector3 direction = (player.transform.position - transform.position).normalized;
+        direction.y = 0f;
+
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            Quaternion.LookRotation(direction),
+            5f * Time.deltaTime
+        );
+
+
+        animator.SetBool("startWalk", true);
     }
     }
 
