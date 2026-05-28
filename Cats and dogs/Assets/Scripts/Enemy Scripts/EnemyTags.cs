@@ -5,8 +5,8 @@ public class EnemyTags : MonoBehaviour
 {
     public TMP_Text tagCount;
     static public int tagInt;
-    public int publicTagInt;
-    public int totalTags;
+    public int publicTagInt = 60;
+    public int totalTags = 60;
     public EnemyBulletCheck enemyBulletCheck;
     public AudioSource audioSource;
     public AudioClip pickupSound;
@@ -20,7 +20,7 @@ public class EnemyTags : MonoBehaviour
 
     static public void ResetScore()
     {
-        tagInt = 0;
+        tagInt = 60;
         
     }
     

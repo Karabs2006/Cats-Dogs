@@ -15,12 +15,17 @@ public class InteractCheck : MonoBehaviour
     public bool inCollider = false;
 
     public bool isDoubleJumpEnabled = false;
+
+    public bool isHealthEnabled = false;
+
     bool isBackPressed;
 
-    
     void Start()
     {
         upgradesMenu.SetActive(false);
+
+        isDashEnabled = PlayerUpgrades.isDashEnabled;
+        isDoubleJumpEnabled = PlayerUpgrades.isDoubleJumpEnabled;
     }
 
     // Update is called once per frame
@@ -66,6 +71,7 @@ public class InteractCheck : MonoBehaviour
         if(enemyTags.publicTagInt >= 10)
         {
         enemyTags.BuyHealth();
+        PlayerUpgrades.isHealthEnabled = true;
         Destroy(healthBtn);
         }
     }
@@ -75,6 +81,7 @@ public class InteractCheck : MonoBehaviour
         if(enemyTags.publicTagInt >= 15)
         {
         isDashEnabled = true;
+        PlayerUpgrades.isDashEnabled = true;
         enemyTags.BuyDash();
         Destroy(dashBtn);
         }
@@ -86,6 +93,7 @@ public class InteractCheck : MonoBehaviour
         {
             enemyTags.BuyDoubleJump();
             isDoubleJumpEnabled = true;
+            PlayerUpgrades.isDoubleJumpEnabled = true;
             Destroy(doubleJumpBtn);
         }
     }
