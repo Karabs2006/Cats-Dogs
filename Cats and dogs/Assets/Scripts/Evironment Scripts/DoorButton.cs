@@ -1,18 +1,22 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 
 public class DoorButton : MonoBehaviour
 {
     public FPController fPController;
 
+    
     public GameObject questionObject;
     public TMP_InputField myInputField;
     public Animator animator;
+    public string answer;
 
-    string input;
+    public GameObject doorCollider;
 
     bool inDoorTrigger;
+    public  bool isDoorOpened = false;
     void Start()
     {
         questionObject.SetActive(false);
@@ -45,17 +49,6 @@ public class DoorButton : MonoBehaviour
     }
 
 
-    public void ReadInput(string s)
-    {
-        myInputField.text = s;
-        Debug.Log(s);
-        
-        if (s.Contains("watchdog", System.StringComparison.OrdinalIgnoreCase))
-        {
-            animator.SetBool("qOneSolved", true);
-            Close();
-        }
-    }
 
 
     public void Close()
@@ -67,6 +60,28 @@ public class DoorButton : MonoBehaviour
         Cursor.visible = false;
         fPController.lookSensitivity = 0.6f;
         inDoorTrigger = false;
+
+    }
+
+    public void CheckAnswer()
+    {
+        if (myInputField.text.Contains(answer, System.StringComparison.OrdinalIgnoreCase))
+        {   
+            questionObject.SetActive(false);
+            animator.SetBool("qOneSolved", true);
+            Close();
+            StartCoroutine(OpenDelay(doorCollider));
+
+            
+
+        }
+    }
+
+    IEnumerator OpenDelay(GameObject gameObject)
+    {
+        yield return new WaitForSeconds(0.8f);
+        gameObject.SetActive(false);
+        isDoorOpened = true;
 
     }
 }

@@ -55,25 +55,29 @@ public class AttackPlayer : MonoBehaviour
 
     void MoveEnemy()
     {
-        float distance = Vector3.Distance(transform.position, player.transform.position);
+        Vector3 targetPosition = new Vector3(
+    player.transform.position.x,
+    transform.position.y,
+    player.transform.position.z
+    );
+
+    float distance = Vector3.Distance(transform.position, targetPosition);
 
     if (distance < 15f) 
     {
         transform.position = Vector3.MoveTowards(
-        transform.position,
-        player.transform.position,
-        3.5f * Time.deltaTime
+            transform.position,
+            targetPosition,
+            3.5f * Time.deltaTime
         );
 
-        Vector3 direction = (player.transform.position - transform.position).normalized;
-        direction.y = 0f;
+        Vector3 direction = (targetPosition - transform.position).normalized;
 
         transform.rotation = Quaternion.Slerp(
             transform.rotation,
             Quaternion.LookRotation(direction),
             5f * Time.deltaTime
         );
-
 
         animator.SetBool("startWalk", true);
     }

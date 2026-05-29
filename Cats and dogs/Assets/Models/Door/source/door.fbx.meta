@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8cb60dc3f63f2134491bd15ccc04bc00
+guid: 717e4735dd9714443b7d42fbd45b6fa4
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,18 +31,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|DoorOpenClose (1)
-      takeName: Armature|DoorOpenClose
+      name: Armature|DoorClosed
+      takeName: Armature|DoorClosed
       internalID: 7308660359870621848
       firstFrame: 0
-      lastFrame: 99
+      lastFrame: 0
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -64,7 +64,7 @@ ModelImporter:
       takeName: Armature|DoorOpenClose
       internalID: -2121481629760002163
       firstFrame: 0
-      lastFrame: 99
+      lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -100,7 +100,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

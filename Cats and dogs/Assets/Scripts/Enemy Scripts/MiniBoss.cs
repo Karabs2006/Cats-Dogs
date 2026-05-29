@@ -9,6 +9,8 @@ public class MiniBoss : MonoBehaviour
 
     public GameObject enemyBulletPrefab;
     public Transform enemyGunPoint;
+
+    public DoorButton doorButton;
     int damageValue = 60;
     bool hitPlayer;
     bool hasBulletFired;
@@ -33,7 +35,7 @@ public class MiniBoss : MonoBehaviour
 
     IEnumerator CoolDown()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         hasBulletFired = false;
     }
 
@@ -55,29 +57,32 @@ public class MiniBoss : MonoBehaviour
     void MoveEnemy()
     {   
         
-        float distance = Vector3.Distance(transform.position, player.transform.position);
-
-        if (distance < 15f) 
-    {
-        moveStarted = true;
-        transform.position = Vector3.MoveTowards(
-        transform.position,
-        player.transform.position,
-        1.2f * Time.deltaTime
+        Vector3 targetPosition = new Vector3(
+        player.transform.position.x,
+        transform.position.y,
+        player.transform.position.z
         );
 
-        Vector3 direction = (player.transform.position - transform.position).normalized;
-        direction.y = 0f;
+        float distance = Vector3.Distance(transform.position, targetPosition);
 
-        transform.rotation = Quaternion.Slerp(
-            transform.rotation,
-            Quaternion.LookRotation(direction),
-            3f * Time.deltaTime
-        );
-    }
+        if (distance < 15f && doorButton.isDoorOpened)
+        {
+            moveStarted = true;
 
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                targetPosition,
+                1.2f * Time.deltaTime
+            );
 
+            Vector3 direction = (targetPosition - transform.position).normalized;
 
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                Quaternion.LookRotation(direction),
+                3f * Time.deltaTime
+            );
+        }
     }
 
 
@@ -96,7 +101,7 @@ public class MiniBoss : MonoBehaviour
 
                 rb.linearVelocity = direction * 30f;
 
-                Destroy(bullet, 1.5f);
+                Destroy(bullet, 0.8f);
             }
 
         hasBulletFired = true;
