@@ -42,26 +42,35 @@ public class DoorButton : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.CompareTag("Player"))
         {
             inDoorTrigger = true;
         }
     }
+    
 
-
-
+     void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            inDoorTrigger = false;
+        }
+    }
 
     public void Close()
     {
         questionObject.SetActive(false);
         fPController.isGamePaused = false;
+        fPController.interactPressed = false;
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         fPController.lookSensitivity = 0.6f;
         inDoorTrigger = false;
+        
 
     }
+
 
     public void CheckAnswer()
     {
@@ -71,8 +80,7 @@ public class DoorButton : MonoBehaviour
             animator.SetBool("qOneSolved", true);
             Close();
             StartCoroutine(OpenDelay(doorCollider));
-
-            
+            fPController.interactPressed = false;
 
         }
     }

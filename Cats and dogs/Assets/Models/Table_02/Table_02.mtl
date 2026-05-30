@@ -1,0 +1,56 @@
+# MTL file - created by a modified js OBJExporter
+
+newmtl Procedual_Marble_Granite Black Galaxy
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pm 1
+Pr 1
+Pds 1
+Pl 1
+Pccns 1-1
+Prfl 0.4591837131892669
+Pior 1.4500000476837158
+Pshc 0 0 0
+Pshr 1
+Psi 1
+Psc 1.3689200440189695 1.3689200440189695 1.3689200440189695
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+
+newmtl Gray_white_plastic
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 0.8734906911849976 0.8399198651313782 0.775066614151001
+Ke 0 0 0
+
+newmtl Nickel_metal-02
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pm 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 0.6780125498771667 0.6445609331130981 0.6057184338569641
+Ke 0 0 0
+map_Pm metalnessMap3.png
+map_Pr roughnessMap3.png
+
+newmtl Material.002
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 0.5
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 0.03925396874547005 0.03925396874547005 0.03925396874547005
+Ke 0 0 0

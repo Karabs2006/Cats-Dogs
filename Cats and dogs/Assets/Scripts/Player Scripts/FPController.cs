@@ -57,6 +57,8 @@ public class FPController : MonoBehaviour
 
     public bool hasDashed;
 
+    public bool objectivePressed;
+
     public InteractCheck interactCheck;
     
     public int jumpCount;
@@ -66,6 +68,9 @@ public class FPController : MonoBehaviour
     public bool secondKeyPressed;
     
     public GameObject bulletPrefabTwo;
+
+    public AudioSource walkingAudio;
+   
 
     void Start()
     {
@@ -89,6 +94,7 @@ public class FPController : MonoBehaviour
     public void OnMovement(InputAction.CallbackContext context)
     {   
         moveInput = context.ReadValue<Vector2>();
+
     }
     public void OnLook(InputAction.CallbackContext context)
     {
@@ -132,7 +138,25 @@ public class FPController : MonoBehaviour
             velocity.y = -2f;
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        bool isMoving = moveInput.magnitude > 0.1f && controller.isGrounded;
+
+        if (isMoving)
+        {
+            if (!walkingAudio.isPlaying)
+            {
+                walkingAudio.Play();
+            }
+        }
+        else
+        {
+            if (walkingAudio.isPlaying)
+            {
+                walkingAudio.Stop();
+            }
+        }
     }
+
     public void HandleLook()
     {
         float mouseX = lookInput.x * lookSensitivity;
@@ -243,6 +267,15 @@ public class FPController : MonoBehaviour
        if (context.performed)
         {
             secondKeyPressed = true;
+          
+        } 
+    }
+
+    public void OnObjective(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            objectivePressed = true;
           
         } 
     }

@@ -3,24 +3,40 @@ using System.Collections;
 
 public class MiniBoss : MonoBehaviour
 {
-     public GameObject player;
+    public GameObject player;
     public GameObject tagPrefab;
     public EnemyBulletCheck enemyBulletCheck;
+
 
     public GameObject enemyBulletPrefab;
     public Transform enemyGunPoint;
 
     public DoorButton doorButton;
+
+    public Animator animator;
     int damageValue = 60;
     bool hitPlayer;
     bool hasBulletFired;
 
     bool moveStarted = false;
+
+
+    public AudioSource audioSource;
+    public AudioClip audioClip;
+
+
+
+    public Renderer rend;
+    public Material redMaterial;
+    public Material defaultMaterial;
+
+    bool hasPlayedAlertSound;
     
 
     void Start()
     {
-        
+        //Renderer rend = GetComponent<Renderer>();
+        rend.material = defaultMaterial;
     }
 
     void Update()
@@ -35,14 +51,16 @@ public class MiniBoss : MonoBehaviour
 
     IEnumerator CoolDown()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(9f);
         hasBulletFired = false;
     }
 
     IEnumerator DamageIndicator()
     {
         
+        rend.material = redMaterial;
         yield return new WaitForSeconds(0.1f);
+        rend.material = defaultMaterial;
        
 
     }
@@ -53,6 +71,7 @@ public class MiniBoss : MonoBehaviour
         hitPlayer = false;
     }
 
+    
 
     void MoveEnemy()
     {   
@@ -61,28 +80,53 @@ public class MiniBoss : MonoBehaviour
         player.transform.position.x,
         transform.position.y,
         player.transform.position.z
+    );
+
+    float distance = Vector3.Distance(transform.position, targetPosition);
+
+    bool isMoving = distance < 15f && doorButton.isDoorOpened;
+
+    if (isMoving)
+    {
+        moveStarted = true;
+
+        // Play alert sound once
+        if (!hasPlayedAlertSound)
+        {
+            audioSource.PlayOneShot(audioClip);
+            hasPlayedAlertSound = true;
+        }
+
+        // Start walking sound loop
+        if (!audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
+
+        transform.position = Vector3.MoveTowards(
+            transform.position,
+            targetPosition,
+            1.2f * Time.deltaTime
         );
 
-        float distance = Vector3.Distance(transform.position, targetPosition);
+        Vector3 direction = (targetPosition - transform.position).normalized;
 
-        if (distance < 15f && doorButton.isDoorOpened)
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            Quaternion.LookRotation(direction),
+            3f * Time.deltaTime
+        );
+    }
+
+    else
+    {
+        hasPlayedAlertSound = false;
+
+        if (audioSource.isPlaying)
         {
-            moveStarted = true;
-
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                targetPosition,
-                1.2f * Time.deltaTime
-            );
-
-            Vector3 direction = (targetPosition - transform.position).normalized;
-
-            transform.rotation = Quaternion.Slerp(
-                transform.rotation,
-                Quaternion.LookRotation(direction),
-                3f * Time.deltaTime
-            );
+            audioSource.Stop();
         }
+    }
     }
 
 
@@ -101,7 +145,7 @@ public class MiniBoss : MonoBehaviour
 
                 rb.linearVelocity = direction * 30f;
 
-                Destroy(bullet, 0.8f);
+                Destroy(bullet, 0.5f);
             }
 
         hasBulletFired = true;
@@ -122,7 +166,7 @@ public class MiniBoss : MonoBehaviour
             {
                 Instantiate(tagPrefab, transform.position, tagPrefab.transform.rotation);
                 
-                Destroy(gameObject);
+                StartCoroutine(Death());
                 damageValue = 0;
                 StartCoroutine(DamageIndicator());
 
@@ -130,8 +174,8 @@ public class MiniBoss : MonoBehaviour
                 enemyBulletCheck.elimText.text = $"{enemyBulletCheck.eliminations}";
 
                 enemyBulletCheck.audioSource.PlayOneShot(enemyBulletCheck.hurt);
-                
 
+                
                 
             }
         }
@@ -147,7 +191,7 @@ public class MiniBoss : MonoBehaviour
                 Instantiate(tagPrefab, transform.position, tagPrefab.transform.rotation);
                 
 
-                Destroy(gameObject);
+                StartCoroutine(Death());
                 damageValue = 0;
                 StartCoroutine(DamageIndicator());
 
@@ -165,6 +209,15 @@ public class MiniBoss : MonoBehaviour
         {
             enemyBulletCheck.currentSlider.value-= 5;
             StartCoroutine(AttackCooldown());
+
+        }
+
+
+        IEnumerator Death()
+        {
+            animator.SetBool("hasDied", true);
+            yield return new WaitForSeconds(1.5f);
+            Destroy(gameObject);
 
         }
 

@@ -4,17 +4,20 @@ using System.Collections;
 public class KeyCardPickup : MonoBehaviour
 {
     public GameObject card;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public AudioSource audioSource;
+
+    public AudioClip audioClip;
+
+    public GameObject flashObj;
+    public bool startFlash = false;
+
+    
     void Start()
     {
         StartCoroutine(Rotate());
         card.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        flashObj.SetActive(false);
     }
 
     IEnumerator Rotate()
@@ -29,9 +32,18 @@ public class KeyCardPickup : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
+        {   
+            startFlash = true;
             gameObject.SetActive(false);
             card.SetActive(true);
+            audioSource.PlayOneShot(audioClip);
+            
         }
     }
+
+    
+   
+
+
+
 }
