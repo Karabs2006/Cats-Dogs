@@ -34,6 +34,7 @@ public class DoorButton : MonoBehaviour
             fPController.lookSensitivity = 0f;
             fPController.interactPressed = false;
             inDoorTrigger = true;
+            fPController.isGameRunning = false;
 
         }
 
@@ -67,6 +68,7 @@ public class DoorButton : MonoBehaviour
         Cursor.visible = false;
         fPController.lookSensitivity = 0.6f;
         inDoorTrigger = false;
+        fPController.isGameRunning = true;
         
 
     }

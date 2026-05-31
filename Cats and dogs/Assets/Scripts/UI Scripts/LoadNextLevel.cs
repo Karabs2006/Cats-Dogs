@@ -38,6 +38,9 @@ public class LoadNextLevel : MonoBehaviour
     {
         SceneManager.LoadSceneAsync(levelToRestart);
         Time.timeScale = 1f;
+        
+        
+        
     }
 
     void OnTriggerEnter(Collider other)
@@ -58,6 +61,8 @@ public class LoadNextLevel : MonoBehaviour
             counters.SetActive(false);
             fPController.lookSensitivity = 0f;
             fPController.isGameRunning = false;
+
+
 
         }
 

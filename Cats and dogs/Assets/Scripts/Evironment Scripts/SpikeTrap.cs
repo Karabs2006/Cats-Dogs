@@ -15,10 +15,22 @@ public class SpikeTrap : MonoBehaviour
     public GameObject lightOne;
     public GameObject lightTwo;
 
+    public GameObject trapMesh;
+    public Collider spikeCollider;
+
+
+    void Start()
+    {
+        GetComponent<Renderer>().enabled = false; 
+
+        spikeCollider = GetComponent<Collider>();
+        spikeCollider.isTrigger = true;
+
+    }
     void Update()
     {
         if(keyCardPickup.card.activeSelf && !routineStarted)
-        {
+        {     
             StartCoroutine(MoveTrap());
             routineStarted = true;
         }
@@ -27,6 +39,11 @@ public class SpikeTrap : MonoBehaviour
 
     IEnumerator MoveTrap()
     {  
+        GetComponent<Renderer>().enabled = true;
+
+        spikeCollider = GetComponent<Collider>();
+        spikeCollider.isTrigger = false;
+
         routineStarted = true;
         audioSource.PlayOneShot(alarm);
         audioSource.PlayOneShot(hostileWarning);
@@ -37,9 +54,7 @@ public class SpikeTrap : MonoBehaviour
             {
                 if (rb != null)
                 {
-                    //rb.AddForce(enemyGunPoint.forward * 1000f); //Adjust force value as needed
                     rb.linearVelocity = transform.forward * 15f;
-
                 }
 
                 yield return new WaitForSeconds(0.5f);

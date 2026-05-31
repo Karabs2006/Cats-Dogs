@@ -7,8 +7,15 @@ public class OpenDoor : MonoBehaviour
     public GameObject card;
     public GameObject door;
 
+    public AudioSource audioSource;
+
+    public AudioClip rewardAudio;
+    public AudioClip failAudio;
+
     bool routineStarted = false;
     bool inCollider = false;
+
+    bool hasSoundPlayed;
     
     void Start()
     {
@@ -19,9 +26,21 @@ public class OpenDoor : MonoBehaviour
     {
         if(inCollider && fPController.interactPressed && card.activeSelf && !routineStarted)
         {
+            fPController.interactPressed = false;
             StartCoroutine(MoveDoor());
+            StartCoroutine(PlayAudio(rewardAudio));
+
         }
 
+
+
+        if(inCollider && fPController.interactPressed && !card.activeSelf)
+        {
+            fPController.interactPressed = false;
+            StartCoroutine(PlayAudio(failAudio));
+        }
+
+    
     }
 
     IEnumerator MoveDoor()
@@ -64,5 +83,18 @@ public class OpenDoor : MonoBehaviour
         }
     }
 
+    IEnumerator PlayAudio(AudioClip audioClip)
+    {
+        if (!hasSoundPlayed)
+        {
+            audioSource.PlayOneShot(audioClip);
+            hasSoundPlayed = true;
+        }
+
+        yield return new WaitForSeconds(audioClip.length);
+        hasSoundPlayed = false;
+
+
+    }
 
 }

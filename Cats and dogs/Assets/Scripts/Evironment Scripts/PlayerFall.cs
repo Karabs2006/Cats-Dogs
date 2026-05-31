@@ -54,6 +54,8 @@ public class PlayerFall : MonoBehaviour
         SceneManager.LoadSceneAsync(levelToRestart);
         wasRestartPressed = true;
         ResumeGame();
+
+        
     }
 
     public void QuitGame()

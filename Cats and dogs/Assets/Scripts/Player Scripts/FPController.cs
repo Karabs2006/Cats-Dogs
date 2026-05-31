@@ -32,7 +32,7 @@ public class FPController : MonoBehaviour
     private float originalMoveSpeed;
 
     private CharacterController controller;
-    private Vector2 moveInput;
+    public Vector2 moveInput;
     private Vector2 lookInput;
     public Vector3 velocity;
     private float verticalRotation = 0f;

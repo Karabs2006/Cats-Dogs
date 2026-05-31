@@ -19,6 +19,8 @@ public class Objective : MonoBehaviour
     {
         objectiveObj.SetActive(false);
         textField.text = objectiveText;
+        StartCoroutine(FlashText());
+
 
     }
 

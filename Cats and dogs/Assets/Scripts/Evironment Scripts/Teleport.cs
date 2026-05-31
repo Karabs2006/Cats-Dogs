@@ -1,9 +1,13 @@
 using UnityEngine;
+using System.Collections;
 
 public class Teleport : MonoBehaviour
 {
     public GameObject player;
     public Transform spawnPoint;
+
+    public AudioSource audioSource;
+    public AudioClip audioClip;
     
     public void TeleportPlayer()
     {
@@ -15,6 +19,9 @@ public class Teleport : MonoBehaviour
                 cc.enabled = false;
 
             player.transform.position = spawnPoint.position;
+            audioSource.PlayOneShot(audioClip);
+            
+            
 
             if (cc != null)
                 cc.enabled = true;
@@ -26,7 +33,15 @@ public class Teleport : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
+            
             TeleportPlayer();
         }
+    }
+
+    IEnumerator SoundDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        audioSource.PlayOneShot(audioClip);
+
     }
 }
