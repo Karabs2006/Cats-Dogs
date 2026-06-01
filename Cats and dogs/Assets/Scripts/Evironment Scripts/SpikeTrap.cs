@@ -25,6 +25,8 @@ public class SpikeTrap : MonoBehaviour
 
         spikeCollider = GetComponent<Collider>();
         spikeCollider.isTrigger = true;
+         lightOne.SetActive(false);
+        lightTwo.SetActive(false);
 
     }
     void Update()

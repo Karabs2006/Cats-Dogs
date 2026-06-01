@@ -7,6 +7,7 @@ public class CleanStart : MonoBehaviour
         PlayerUpgrades.isDashEnabled = false;
         PlayerUpgrades.isDoubleJumpEnabled = false;
         PlayerUpgrades.isHealthEnabled = false;
+        PlayerUpgrades.isWeaponFound = false;
     }
 
    

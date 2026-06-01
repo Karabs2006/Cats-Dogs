@@ -12,7 +12,7 @@ public class EnemyBulletCheck : MonoBehaviour
     public PlayerFall playerFall;
     public int maxHealth = 20;
     public int eliminations = 0;
-    public TMP_Text elimText;
+   
 
     public AudioSource audioSource;
     public AudioClip hurt;
@@ -21,7 +21,6 @@ public class EnemyBulletCheck : MonoBehaviour
     {
         //healthSlider.value = maxHealth;
         
-        elimText.text = $"{elimText}";
         currentSlider = healthSlider;
         currentSlider.value = maxHealth;
         upgradedHealthSlider.gameObject.SetActive(false);

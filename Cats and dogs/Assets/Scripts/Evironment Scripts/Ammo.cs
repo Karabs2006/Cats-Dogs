@@ -5,7 +5,7 @@ public class Ammo : MonoBehaviour
     public FPController fPController;
     public AudioSource audioSource;
     public AudioClip reload;
-    public WeaponSwitch weaponSwitch;
+    
 
     void OnTriggerEnter(Collider other)
     {

@@ -20,7 +20,7 @@ public class BlasterPickup : MonoBehaviour
         {
             gameObject.SetActive(false);
             weaponSwitch.weaponUI.SetActive(true);
-            blasterCollected = true;
+            PlayerUpgrades.isWeaponFound = true;
             audioSource.PlayOneShot(audioClip);
             }
     }

@@ -11,8 +11,7 @@ public class LoadNextLevel : MonoBehaviour
     public AudioSource winningAudioSource;
     public AudioClip winSound;
     public AudioSource backgroundAudioSource;
-    public TMP_Text orbsLeft;
-    public TMP_Text playerTimeLeft;
+    
     public FPController fPController;
     public GameObject counters;
 
@@ -55,9 +54,7 @@ public class LoadNextLevel : MonoBehaviour
             backgroundAudioSource.Stop();
             reachedEndPlatform = true;
             StopCoroutine(timer.Countdown());
-        
-            playerTimeLeft.text = $"{timer.timeScript}";
-            orbsLeft.text =$"{fPController.ammo}";
+    
             counters.SetActive(false);
             fPController.lookSensitivity = 0f;
             fPController.isGameRunning = false;

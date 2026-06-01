@@ -86,7 +86,7 @@ public class BossEnemy : MonoBehaviour
                 StartCoroutine(DamageIndicator());
 
                 enemyBulletCheck.eliminations++;
-                enemyBulletCheck.elimText.text = $"{enemyBulletCheck.eliminations}";
+                
 
                 enemyBulletCheck.audioSource.PlayOneShot(enemyBulletCheck.hurt);
                 
@@ -111,7 +111,7 @@ public class BossEnemy : MonoBehaviour
                 StartCoroutine(DamageIndicator());
 
                 enemyBulletCheck.eliminations++;
-                enemyBulletCheck.elimText.text = $"{enemyBulletCheck.eliminations}";
+                
 
                 enemyBulletCheck.audioSource.PlayOneShot(enemyBulletCheck.hurt);
 

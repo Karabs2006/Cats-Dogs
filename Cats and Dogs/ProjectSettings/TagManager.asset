@@ -15,6 +15,7 @@ TagManager:
   - PlayerBulletTwo
   - EnemyBoss
   - BossGround
+  - ImportantUI
   layers:
   - Default
   - TransparentFX

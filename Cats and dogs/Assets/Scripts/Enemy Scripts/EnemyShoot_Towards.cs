@@ -90,7 +90,7 @@ public class EnemyShoot_Towards : MonoBehaviour
                 StartCoroutine(DamageIndicator());
 
                 enemyBulletCheck.eliminations++;
-                enemyBulletCheck.elimText.text = $"{enemyBulletCheck.eliminations}";
+                
 
                 enemyBulletCheck.audioSource.PlayOneShot(enemyBulletCheck.hurt);
 
@@ -110,7 +110,7 @@ public class EnemyShoot_Towards : MonoBehaviour
             StartCoroutine(DamageIndicator());
 
             enemyBulletCheck.eliminations++;
-            enemyBulletCheck.elimText.text = $"{enemyBulletCheck.eliminations}";
+            
 
             enemyBulletCheck.audioSource.PlayOneShot(enemyBulletCheck.hurt);
         }

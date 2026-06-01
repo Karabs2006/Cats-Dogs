@@ -471,7 +471,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 700, y: -400}
+  m_AnchoredPosition: {x: 700, y: -469}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1624192240
@@ -886,9 +886,11 @@ MonoBehaviour:
     human.\nPart beast.\n\nIn the distant future, civilization has fractured into
     rival species-led empires. Among the most powerful are the Canine and the Feline
     dominions. They have been locked in a brutal intergalactic war that has raged
-    for generations.\n\nYou are the legendary canine ranger, Doug Kernel. \nYour
-    mission is clear: \nInfiltrate the hostile feline controlled bases and rescue
-    captured allies. \n\nBy any means neccasary."
+    for generations.\n\nYou are the legendary canine ranger, Doug Kernel. \n\nYou
+    have successfully breached the facility's outer defences but your presence has
+    been detected. The compound is now entering lockdown protocol, closing off sections
+    of the facility. You must reach the entrance teleporter before the lockdown is
+    complete or risk becoming trapped."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

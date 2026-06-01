@@ -171,7 +171,7 @@ public class MiniBoss : MonoBehaviour
                 StartCoroutine(DamageIndicator());
 
                 enemyBulletCheck.eliminations++;
-                enemyBulletCheck.elimText.text = $"{enemyBulletCheck.eliminations}";
+                
 
                 enemyBulletCheck.audioSource.PlayOneShot(enemyBulletCheck.hurt);
 
@@ -196,7 +196,7 @@ public class MiniBoss : MonoBehaviour
                 StartCoroutine(DamageIndicator());
 
                 enemyBulletCheck.eliminations++;
-                enemyBulletCheck.elimText.text = $"{enemyBulletCheck.eliminations}";
+                
 
                 enemyBulletCheck.audioSource.PlayOneShot(enemyBulletCheck.hurt);
 

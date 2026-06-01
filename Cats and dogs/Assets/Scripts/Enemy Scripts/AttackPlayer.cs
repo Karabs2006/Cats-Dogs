@@ -8,9 +8,9 @@ public class AttackPlayer : MonoBehaviour
     public GameObject tagPrefab;
     public EnemyBulletCheck enemyBulletCheck;
 
-    //public Renderer rend;
-    //public Material redMaterial;
-    //public Material defaultMaterial;
+    public Renderer rend;
+    public Material redMaterial;
+    public Material defaultMaterial;
     int damageCount = 0;
     bool hitPlayer;
 
@@ -21,7 +21,7 @@ public class AttackPlayer : MonoBehaviour
     void Start()
     {
         
-        //rend.material = defaultMaterial;
+        rend.material = defaultMaterial;
         
     }
 
@@ -40,9 +40,9 @@ public class AttackPlayer : MonoBehaviour
 
     IEnumerator DamageIndicator()
     {
-        //rend.material = redMaterial;
+        rend.material = redMaterial;
         yield return new WaitForSeconds(0.1f);
-        //rend.material = defaultMaterial;
+        rend.material = defaultMaterial;
 
     }
 
@@ -101,7 +101,7 @@ public class AttackPlayer : MonoBehaviour
                 StartCoroutine(DamageIndicator());
 
                 enemyBulletCheck.eliminations++;
-                enemyBulletCheck.elimText.text = $"{enemyBulletCheck.eliminations}";
+                
 
                 enemyBulletCheck.audioSource.PlayOneShot(enemyBulletCheck.hurt);
 
@@ -121,7 +121,7 @@ public class AttackPlayer : MonoBehaviour
             StartCoroutine(DamageIndicator());
 
             enemyBulletCheck.eliminations++;
-            enemyBulletCheck.elimText.text = $"{enemyBulletCheck.eliminations}";
+        
 
             enemyBulletCheck.audioSource.PlayOneShot(enemyBulletCheck.hurt);
         }

@@ -22,11 +22,16 @@ public class WeaponSwitch : MonoBehaviour
         backgroundTwo.SetActive(false);
         blasterTwo.SetActive(false);
         weaponUI.SetActive(false);
+
+        if(PlayerUpgrades.isWeaponFound)
+        {
+            weaponUI.SetActive(true);
+        }
     }
 
     void Update()
     {
-        if(blasterPickup.blasterCollected)
+        if(PlayerUpgrades.isWeaponFound)
         {
             if(fPController.firstKeyPressed)
             {

@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEditor;
 public class FPController : MonoBehaviour
 {   
     public AudioSource audioSource;
@@ -70,7 +71,9 @@ public class FPController : MonoBehaviour
     public GameObject bulletPrefabTwo;
 
     public AudioSource walkingAudio;
-   
+
+
+      bool allMenusActive = false;
 
     void Start()
     {
@@ -231,7 +234,21 @@ public class FPController : MonoBehaviour
 
     public void OnPause(InputAction.CallbackContext context)
     {
-        if (context.performed)
+         
+        GameObject[] menus = GameObject.FindGameObjectsWithTag("ImportantUI");
+
+        bool anyMenuOpen = false;
+
+        foreach (GameObject menu in menus)
+        {
+            if (menu.activeSelf)
+            {
+                anyMenuOpen = true;
+                break;
+            }
+        }
+
+        if (context.performed && !anyMenuOpen)
         {
             isGamePaused = true;
         }
